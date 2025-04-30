@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IT_ATCB_Consumable_Inventory_System.props" />
+</Project>
