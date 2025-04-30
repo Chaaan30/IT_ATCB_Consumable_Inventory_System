@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "IT_ATCB_Consumable_Inventory_System/1.0.0": {
+        "runtime": {
+          "IT_ATCB_Consumable_Inventory_System.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IT_ATCB_Consumable_Inventory_System/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
