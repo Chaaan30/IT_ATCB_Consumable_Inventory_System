@@ -1,0 +1,29 @@
+﻿@model IEnumerable<IT_ATCB_Consumable_Inventory_System.Models.Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+<h2>Categories</h2>
+<a href="@Url.Action("Create")" class="btn btn-success mb-2">Add New Category</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>@cat.Name</td>
+                <td>@cat.Description</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@cat.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@cat.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@cat.Id" class="btn btn-danger btn-sm" onclick="return confirm('Delete this category?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

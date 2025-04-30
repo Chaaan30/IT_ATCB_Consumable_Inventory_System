@@ -1,0 +1,29 @@
+﻿@model IEnumerable<IT_ATCB_Consumable_Inventory_System.Models.Supplier>
+@{
+    ViewData["Title"] = "Suppliers";
+}
+<h2>Suppliers</h2>
+<a href="@Url.Action("Create")" class="btn btn-success mb-2">Add New Supplier</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact Info</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sup in Model)
+        {
+            <tr>
+                <td>@sup.Name</td>
+                <td>@sup.ContactInfo</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@sup.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@sup.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@sup.Id" class="btn btn-danger btn-sm" onclick="return confirm('Delete this supplier?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

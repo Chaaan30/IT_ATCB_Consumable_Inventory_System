@@ -1,0 +1,19 @@
+﻿@model IT_ATCB_Consumable_Inventory_System.Models.Supplier
+@{
+    ViewData["Title"] = "Edit Supplier";
+}
+<h2>Edit Supplier</h2>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ContactInfo" class="form-label"></label>
+        <textarea asp-for="ContactInfo" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

@@ -1,7 +1,13 @@
+using IT_ATCB_Consumable_Inventory_System.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<InventoryContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("OracleDb")));
 
 var app = builder.Build();
 
