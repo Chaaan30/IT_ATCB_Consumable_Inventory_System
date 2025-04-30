@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IT_ATCB_Consumable_Inventory_System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62d072a535c9e2869e62803825b7eea6404388ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d62b57dc6bb7790a972b8e4ba621baa4ce7e450")]
 [assembly: System.Reflection.AssemblyProductAttribute("IT_ATCB_Consumable_Inventory_System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IT_ATCB_Consumable_Inventory_System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

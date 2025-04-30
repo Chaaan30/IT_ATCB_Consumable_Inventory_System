@@ -10,7 +10,7 @@ namespace IT_ATCB_Consumable_Inventory_System.Models
         public int CurrentQuantity { get; set; }
         public string UnitOfMeasure { get; set; }
         public int CriticalLevel { get; set; }
-        public string StockStatus { get; set; } // "OK", "Low Stock", "Out of Stock"
+        public string StockStatus { get; set; }
         public DateTime LastUpdated { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace IT_ATCB_Consumable_Inventory_System.Models
         public int TotalPages { get; set; }
         public string SortColumn { get; set; }
         public string SortDirection { get; set; }
-        public string UserRole { get; set; } // "Admin", "Editor", "Viewer"
+        public string UserRole { get; set; }
     }
 }
