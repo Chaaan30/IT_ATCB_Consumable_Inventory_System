@@ -2,28 +2,43 @@
 @{
     ViewData["Title"] = "Categories";
 }
-<h2>Categories</h2>
-<a href="@Url.Action("Create")" class="btn btn-success mb-2">Add New Category</a>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cat in Model)
-        {
-            <tr>
-                <td>@cat.Name</td>
-                <td>@cat.Description</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@cat.Id" class="btn btn-info btn-sm">Details</a>
-                    <a asp-action="Edit" asp-route-id="@cat.Id" class="btn btn-primary btn-sm">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@cat.Id" class="btn btn-danger btn-sm" onclick="return confirm('Delete this category?')">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="bi bi-tags"></i> Categories</h2>
+    <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Category</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped align-middle"> @* Added striped and align-middle *@
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th style="width: 180px;">Actions</th> @* Give actions a fixed width *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cat in Model)
+                    {
+                        <tr>
+                            <td>@cat.Name</td>
+                            <td>@cat.Description</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@cat.Id" class="btn btn-info btn-sm" title="Details"><i class="bi bi-info-circle"></i></a>
+                                <a asp-action="Edit" asp-route-id="@cat.Id" class="btn btn-primary btn-sm" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                                <a asp-action="Delete" asp-route-id="@cat.Id" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete category: @cat.Name?')"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                     @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted fst-italic py-3">No categories found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,53 @@
-﻿@model IT_ATCB_Consumable_Inventory_System.Models.Category
-
+﻿@model IT_ATCB_Consumable_Inventory_System.Models.Categoryels.Supplier>
 @{
+@{  ViewData["Title"] = "Suppliers";
     ViewData["Title"] = "Create Category";
-}
+}div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="bi bi-truck"></i> Suppliers</h2>
+<div class="row justify-content-center">e" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New Supplier</a>
+    <div class="col-md-8 col-lg-6"> @* Limit form width *@
+        <div class="card shadow-sm">
+            <div class="card-header">el>
+                <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Create New Category</h4>
+            </div>r"></span>
+            <div class="card-body">  <table class="table table-bordered table-hover table-striped align-middle"> @* Added striped and align-middle *@
+                <form asp-action="Create">>ss="mb-3">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div> @* Add validation summary *@bel"></label>
+                    <div class="mb-3">a>
+                        <label asp-for="Name" class="form-label"></label>              <th>Contact Info</th>>
+                        <input asp-for="Name" class="form-control" /> Give actions a fixed width *@="submit" class="btn btn-success">Create</button>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>         </thead>                <tbody>                    @foreach (var sup in Model)                    {                        <tr>                            <td>@sup.Name</td>                            <td>@sup.ContactInfo</td>                            <td>
+                    <div class="mb-3">                                <a asp-action="Details" asp-route-id="@sup.Id" class="btn btn-info btn-sm" title="Details"><i class="bi bi-info-circle"></i></a>
+                        <label asp-for="Description" class="form-label"></label>                                <a asp-action="Edit" asp-route-id="@sup.Id" class="btn btn-primary btn-sm" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea> @* Added rows attribute *@
+                        <span asp-validation-for="Description" class="text-danger"></span> @* Added validation span *@
+                    </div>
+                    <div class="d-flex justify-content-end"> @* Align buttons right *@
 
-<h2>Create Category</h2>
-<form asp-action="Create">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-    <button type="submit" class="btn btn-success">Create</button>
-    <a asp-action="Index" class="btn btn-secondary">Back</a>
-</form>
+
+
+
+
+
+
+
+
+
+
+
+}    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} @* Include validation scripts *@@section Scripts {</div>    </div>        </div>            </div>                </form>                    </div>                         <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Create</button>                         <a asp-action="Index" class="btn btn-secondary me-2"><i class="bi bi-x-lg"></i> Cancel</a>                                <a asp-action="Delete" asp-route-id="@sup.Id" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete supplier: @sup.Name?')"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+
+
+
+
+
+
+
+</div>    </div>        </div>            </table>                </tbody>                    }                        </tr>                    }
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted fst-italic py-3">No suppliers found.</td>
