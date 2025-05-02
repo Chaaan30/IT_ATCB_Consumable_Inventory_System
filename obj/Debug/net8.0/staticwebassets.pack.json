@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\crist\\source\\repos\\IT_ATCB_Consumable_Inventory_System\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.IT_ATCB_Consumable_Inventory_System.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.IT_ATCB_Consumable_Inventory_System.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.IT_ATCB_Consumable_Inventory_System.props",
+      "PackagePath": "build\\IT_ATCB_Consumable_Inventory_System.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.IT_ATCB_Consumable_Inventory_System.props",
+      "PackagePath": "buildMultiTargeting\\IT_ATCB_Consumable_Inventory_System.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.IT_ATCB_Consumable_Inventory_System.props",
+      "PackagePath": "buildTransitive\\IT_ATCB_Consumable_Inventory_System.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

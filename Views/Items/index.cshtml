@@ -83,16 +83,17 @@
                 <td>
                     @if (Model.UserRole == "Admin" || Model.UserRole == "Editor")
                     {
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-outline-success">Update Stock</a>
+                        @* Update links to actual actions and add icons *@
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="UpdateStock" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success" title="Update Stock"><i class="bi bi-box-arrow-in-down"></i></a>
                         @if (Model.UserRole == "Admin")
                         {
-                            <a href="#" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure you want to delete item: @item.ModelName?')"><i class="bi bi-trash"></i></a>
                         }
                     }
                     else
                     {
-                        <span class="text-muted small">N/A</span>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Details"><i class="bi bi-info-circle"></i></a>
                     }
                 </td>
             </tr>

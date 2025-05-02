@@ -1,47 +1,172 @@
-﻿@model IEnumerable<IT_ATCB_Consumable_Inventory_System.Models.Item>
+﻿@model IT_ATCB_Consumable_Inventory_System.Models.DashboardViewModel
 
 @{
-    ViewData["Title"] = "Items";
+    ViewData["Title"] = "Dashboard";
+    // Layout = "~/Views/Shared/_Layout.cshtml"; // Layout is set globally or by _ViewStart.cshtml
 }
 
-<h2>Items</h2>
+<h2 class="mb-3">Dashboard</h2>
+<p class="text-muted mb-4">Welcome, @Model.UserName!</p>
 
-@* <form method="get" asp-action="Index">
-    <input type="text" name="search" value="@Request.Query["search"]" placeholder="Search by model name..." class="form-control" />
-    <button type="submit" class="btn btn-primary my-2">Search</button>
-    <a href="@Url.Action("Create")" class="btn btn-success my-2">Add New Item</a>
-</form> *@
+@if (!string.IsNullOrEmpty(Model.FlashMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.FlashMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @Model.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Model Name</th>
-            <th>Category</th>
-            <th>Supplier</th>       
-            <th>Quantity</th>
-            <th>Unit</th>
-            <th>Critical Level</th>
-            <th>Last Updated</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.ModelName</td>
-                <td>@item.Category?.Name</td>
-                <td>@item.Supplier?.Name</td>
-                <td>@item.CurrentQuantity</td>
-                <td>@item.UnitOfMeasure</td>
-                <td>@item.CriticalLevel</td>
-                <td>@item.LastUpdated.ToString("yyyy-MM-dd")</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Delete this item?');">Delete</a>
-                </td>
-            </tr>
+<!-- Summary Cards -->
+<div class="row mb-4 g-3"> @* Added gutter spacing g-3 *@
+    @foreach (var card in Model.SummaryCards)
+    {
+        @* Adjusted column classes for responsiveness *@
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card shadow-sm text-center h-100"> @* Added h-100 for equal height *@
+                <div class="card-body d-flex flex-column justify-content-center"> @* Center content vertically *@
+                    <h5 class="card-title text-muted">@card.Title</h5>
+                    <p class="display-6 fw-bold mb-0">@card.Value</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Charts -->
+<div class="row mb-4 g-3"> @* Added gutter spacing g-3 *@
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100"> @* Added h-100 *@
+            <div class="card-header"><i class="bi bi-bar-chart-line"></i> Category Stock</div>
+            <div class="card-body">
+                @* Placeholder for chart, replace with JS chart later *@
+                @* Consider using a canvas for Chart.js here if implementing *@
+                @* <canvas id="categoryStockChart"></canvas> *@
+                @if (Model.CategoryStockLabels.Length > 0)
+                {
+                    <ul class="list-unstyled"> @* Use list-unstyled for cleaner look *@
+                        @for (int i = 0; i < Model.CategoryStockLabels.Length; ++i)
+                        {
+                            <li>@Model.CategoryStockLabels[i]: <span class="fw-bold">@Model.CategoryStockValues[i]</span></li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted text-center">No category stock data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100"> @* Added h-100 *@
+            <div class="card-header"><i class="bi bi-graph-up"></i> Top 5 Items by Quantity</div>
+            <div class="card-body">
+                 @* <canvas id="topItemsChart"></canvas> *@
+                 @if (Model.TopItemsLabels.Length > 0)
+                 {
+                    <ul class="list-unstyled">
+                        @for (int i = 0; i < Model.TopItemsLabels.Length; ++i)
+                        {
+                             <li>@Model.TopItemsLabels[i]: <span class="fw-bold">@Model.TopItemsValues[i]</span></li>
+                        }
+                    </ul>
+                 }
+                 else
+                 {
+                    <p class="text-muted text-center">No item data available.</p>
+                 }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity List -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header"><i class="bi bi-clock-history"></i> Recent Activity</div>
+    <div class="card-body">
+        <div class="table-responsive"> @* Make table responsive *@
+            <table class="table table-sm table-striped table-hover mb-0"> @* Added striped/hover, removed border, margin bottom *@
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Action</th>
+                        <th>Qty</th>
+                        <th>User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var activity in Model.RecentActivities.OrderByDescending(a => a.Date).Take(10)) @* Show latest 10 *@
+                    {
+                        <tr>
+                            <td>@activity.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td>@activity.ItemName</td>
+                            <td>@activity.Action</td>
+                            <td>@activity.Quantity</td>
+                            <td>@activity.User</td>
+                        </tr>
+                    }
+                    @if (!Model.RecentActivities.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted fst-italic py-3">No recent activity logged.</td> @* Improved styling *@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* Add chart rendering script section if needed *@
+@*
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Add JS code here to render charts using Chart.js
+        // Example for Category Stock:
+        const ctxCategory = document.getElementById('categoryStockChart'); // Make sure you have a canvas with this ID
+        if (ctxCategory) {
+            new Chart(ctxCategory, {
+                type: 'bar', // or 'doughnut'
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.CategoryStockLabels)),
+                    datasets: [{
+                        label: '# of Items',
+                        data: @Html.Raw(Json.Serialize(Model.CategoryStockValues)),
+                        backgroundColor: [ // Add some colors
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [ // Add borders
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: { y: { beginAtZero: true } },
+                    plugins: { legend: { display: false } } // Hide legend for single dataset
+                 }
+            });
         }
-    </tbody>
-</table>
+        // Add similar code for Top Items chart (maybe a pie or doughnut chart?)
+    </script>
+}
+*@
