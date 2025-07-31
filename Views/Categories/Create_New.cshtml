@@ -1,19 +1,18 @@
-﻿@model IT_ATCB_Consumable_Inventory_System.Models.Category
+@model IT_ATCB_Consumable_Inventory_System.Models.Category
 
 @{
-    ViewData["Title"] = "Edit Category";
+    ViewData["Title"] = "Create Category";
 }
 
 <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
         <div class="card shadow-sm">
             <div class="card-header">
-                <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Edit Category</h4>
+                <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Create New Category</h4>
             </div>
             <div class="card-body">
-                <form asp-action="Edit">
+                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                    <input type="hidden" asp-for="Id" />
                     
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
@@ -29,7 +28,7 @@
                     
                     <div class="d-flex justify-content-end">
                         <a asp-action="Index" class="btn btn-secondary me-2"><i class="bi bi-x-lg"></i> Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Save Changes</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-lg"></i> Create</button>
                     </div>
                 </form>
             </div>
@@ -39,4 +38,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+} 

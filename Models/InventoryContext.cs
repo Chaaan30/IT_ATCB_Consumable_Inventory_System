@@ -12,9 +12,9 @@ namespace IT_ATCB_Consumable_Inventory_System.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Item>().ToTable("ITEMS");
-            modelBuilder.Entity<Category>().ToTable("CATEGORIES");
-            modelBuilder.Entity<Supplier>().ToTable("SUPPLIERS");
+            modelBuilder.Entity<Item>().ToTable("Z_ITCIMS_ITEMS");
+            modelBuilder.Entity<Category>().ToTable("Z_ITCIMS_CATEGORIES");
+            modelBuilder.Entity<Supplier>().ToTable("Z_ITCIMS_SUPPLIERS");
         }
     }
 }

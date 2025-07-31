@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IT_ATCB_Consumable_Inventory_System.Models
 {
-    [Table("CATEGORIES")]
+    [Table("Z_ITCIMS_CATEGORIES")]
     public class Category
     {
         [Key]

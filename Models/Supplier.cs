@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IT_ATCB_Consumable_Inventory_System.Models
 {
-    [Table("SUPPLIERS")]
+    [Table("Z_ITCIMS_SUPPLIERS")]
     public class Supplier
     {
         [Key]
